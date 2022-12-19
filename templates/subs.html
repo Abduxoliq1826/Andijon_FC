@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="main-content">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover" style="text-align: center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Club</th>
+                            <th scope="col">Game</th>
+                            <th scope="col">Player On</th>
+                            <th scope="col">Player Out</th>
+                            <th scope="col">Minute</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in subs %}
+                            <tr>
+                                <td>{{ i.club.name }}</td>
+                                <td>{{ i.game.host.name }} VS {{ i.game.guest.name }}</td>
+                                <td>{{ i.squad.name }}</td>
+                                <td>{{ i.line.name }}</td>
+                                <td>{{ i.minute }}</td>
+                                <td><a href="{% url 'update-subs' i.id %}"><i class="align-middle" data-feather="edit-2"></i></a></td>
+                                <td><a href="{% url 'delete-subs' i.id %}"><i class="align-middle" data-feather="trash"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'add-subs' %}"><button class="btn btn-success">Add Substitute</button></a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
